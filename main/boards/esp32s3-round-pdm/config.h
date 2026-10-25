@@ -1,0 +1,58 @@
+#ifndef _BOARD_CONFIG_H_
+#define _BOARD_CONFIG_H_
+
+#include <driver/gpio.h>
+
+#define AUDIO_INPUT_SAMPLE_RATE  16000
+#define AUDIO_OUTPUT_SAMPLE_RATE 24000
+
+// 功放走普通 I2S 输出，麦克风走 PDM 输入
+#define AUDIO_I2S_METHOD_SIMPLEX
+
+// NS4168 功放（I2S）
+#define AUDIO_I2S_SPK_GPIO_BCLK GPIO_NUM_18
+#define AUDIO_I2S_SPK_GPIO_LRCK GPIO_NUM_8
+#define AUDIO_I2S_SPK_GPIO_DOUT GPIO_NUM_17
+
+// LMD2718 麦克风（PDM：SCK = PDM CLK，DIN = PDM DATA，没有 WS）
+#define AUDIO_I2S_MIC_GPIO_SCK  GPIO_NUM_15
+#define AUDIO_I2S_MIC_GPIO_DIN  GPIO_NUM_13
+
+#define BUILTIN_LED_GPIO        GPIO_NUM_48
+#define BOOT_BUTTON_GPIO        GPIO_NUM_0
+#define TOUCH_BUTTON_GPIO       GPIO_NUM_NC
+
+// 屏幕自带的 K1~K4 实体按键
+#define K1_BUTTON_GPIO          GPIO_NUM_6
+#define K2_BUTTON_GPIO          GPIO_NUM_7
+#define K3_BUTTON_GPIO          GPIO_NUM_5
+#define K4_BUTTON_GPIO          GPIO_NUM_40
+
+// 环境传感器 AHT20 + BMP280（同一根 I2C 总线）
+#define SENSOR_I2C_SDA_GPIO     GPIO_NUM_12
+#define SENSOR_I2C_SCL_GPIO     GPIO_NUM_14
+
+// 1.8" ST7735S 128x160（SPI），背光直接接 3V3
+#define DISPLAY_BACKLIGHT_PIN GPIO_NUM_NC
+#define DISPLAY_MOSI_PIN      GPIO_NUM_2
+#define DISPLAY_CLK_PIN       GPIO_NUM_1
+#define DISPLAY_DC_PIN        GPIO_NUM_38
+#define DISPLAY_RST_PIN       GPIO_NUM_42
+#define DISPLAY_CS_PIN        GPIO_NUM_41
+
+// ST7735S 用 IDF 内置的 ST7789 驱动点亮（同 esp32-bread 板对 ST7735 的处理方式）。
+// ST7735 和 ST7789 的初始化命令集高度兼容，本项目也一直这么用。
+#define LCD_TYPE_ST7789_SERIAL
+#define DISPLAY_WIDTH   128
+#define DISPLAY_HEIGHT  160
+#define DISPLAY_MIRROR_X true
+#define DISPLAY_MIRROR_Y true
+#define DISPLAY_SWAP_XY false
+#define DISPLAY_INVERT_COLOR    false
+#define DISPLAY_RGB_ORDER  LCD_RGB_ELEMENT_ORDER_RGB
+#define DISPLAY_OFFSET_X  0
+#define DISPLAY_OFFSET_Y  0
+#define DISPLAY_BACKLIGHT_OUTPUT_INVERT false
+#define DISPLAY_SPI_MODE 0
+
+#endif // _BOARD_CONFIG_H_

@@ -1,0 +1,9 @@
+{
+    "type": "esp32s3-round-pdm",
+    "target": "esp32s3",
+    "builds": [
+        {
+            "name": "esp32s3-round-pdm"
+        }
+    ]
+}
